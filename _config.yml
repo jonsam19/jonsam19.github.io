@@ -1,5 +1,6 @@
 title: Jonas Samuelsson
 
-description: [View my LinkedIn profile](https://www.linkedin.com/in/jonas-samuelsson19/)
+author:
+  linkedin: "https://www.linkedin.com/in/jonas-samuelsson19/"
 
 theme: jekyll-theme-minimal
