@@ -4,7 +4,6 @@ theme: default
 
 ## Portfolio
 
----
 
 ### Projects
 
