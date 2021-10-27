@@ -2,7 +2,7 @@
 theme: default
 ---
 
-<h2>Portfolio</h2>
+## Portfolio
 
 ---
 
