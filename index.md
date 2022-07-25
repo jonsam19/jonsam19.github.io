@@ -5,6 +5,9 @@ layout: default
 ## Portfolio
 ---
 
+[How the shift towards working from home has impacted people’s work and private life](https://jonsam19.shinyapps.io/covid_work_app/)
+
+
 [Legionnaires’ disease in Europe: increasing trend in 2017-2019](https://jonsam19.shinyapps.io/legi_1719/)
 <img src="images/its1719.jpg?raw=true"/>
 
