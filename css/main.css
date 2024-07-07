@@ -29,4 +29,6 @@ ul.posts li { list-style: none; }
 .cv .download { float: right; font-size: .8em; text-transform: uppercase; }
 
 /* Portfolio */
-a.shiny-link { color: #000000; }
+.shiny-link a {
+    color: #000000; /* Black color */
+  }
