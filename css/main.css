@@ -30,5 +30,8 @@ ul.posts li { list-style: none; }
 
 /* Portfolio */
 .shiny-link a {
-    color: #000000; /* Black color */
+    color: #000000; 
+    font-family: 'Arial', 'Sans-Serif';
   }
+
+

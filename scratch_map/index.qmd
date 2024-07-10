@@ -1,0 +1,45 @@
+---
+format: 
+  html:
+    self-contained: true
+execute:
+  echo: false
+  warning: false
+  error: false
+---
+
+
+```{r}
+library(tidyverse)
+library(ggiraph)
+library(sf)
+
+countries_visited <- c("Sweden", "Norway", "Denmark", "Iceland", "Finland",
+                       "Greenland", "UK", "Germany", "Netherlands",
+                       "Belgium", "France", "Portugal", "Spain", "Switzerland", 
+                       "Austria", "Italy", "Poland", "Czech Republic", "Slovakia", 
+                       "Hungary", "Croatia", "Bosnia", "Serbia", "Montenegro",
+                       "Kosovo", "Albania", "Macedonia", "Romania", "Greece",
+                       "Turkey", "Estonia", "Latvia", "Ukraine", "Azerbaijan",
+                       "Georgia", "Israel", "Kyrgyzstan", "China", "Myanmar", 
+                       "Malaysia", "Singapore", "Cambodia", "USA")
+
+world_coordinates <- map_data("world") |> 
+  mutate(visited = if_else(region %in% c(countries_visited), "Visited", "Not yet visited")) |> 
+  filter(region != "Antarctica") |> 
+  as_tibble()
+
+  
+
+map <- ggplot(data = world_coordinates,
+         aes(long, lat, map_id = region, fill = visited,
+               tooltip = region)) +
+  geom_map_interactive(map = world_coordinates, color = "white", size = 0.1) +
+  coord_fixed(1.2) +
+  theme_void() +
+  theme(legend.position = "none")
+
+girafe(ggobj = map) %>%
+    girafe_options(opts_zoom(max = 5))
+```
+
