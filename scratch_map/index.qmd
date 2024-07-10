@@ -2,6 +2,7 @@
 format: 
   html:
     self-contained: true
+    css: css/main.css
 execute:
   echo: false
   warning: false
