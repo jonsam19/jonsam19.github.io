@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jonas Samuelsson">
+<meta name="dcterms.date" content="2025-10-31">
+
+<title>AI-Driven Risk Assessment Model for Swedish Dental Care – Jonas Samuelsson</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-34e9bac5df10ac61b179e8130ae60399.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Jonas Samuelsson</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../travel.html"> 
+<span class="menu-text">Travel</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../media/CV_Jonas_Samuelsson.pdf"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary">Executive Summary</a></li>
+  <li><a href="#background-challenge" id="toc-background-challenge" class="nav-link" data-scroll-target="#background-challenge">Background &amp; Challenge</a>
+  <ul class="collapse">
+  <li><a href="#the-problem" id="toc-the-problem" class="nav-link" data-scroll-target="#the-problem">The Problem</a></li>
+  <li><a href="#project-goals" id="toc-project-goals" class="nav-link" data-scroll-target="#project-goals">Project Goals</a></li>
+  </ul></li>
+  <li><a href="#approach-methodology" id="toc-approach-methodology" class="nav-link" data-scroll-target="#approach-methodology">Approach &amp; Methodology</a>
+  <ul class="collapse">
+  <li><a href="#data-infrastructure" id="toc-data-infrastructure" class="nav-link" data-scroll-target="#data-infrastructure">Data Infrastructure</a></li>
+  <li><a href="#model-development" id="toc-model-development" class="nav-link" data-scroll-target="#model-development">Model Development</a></li>
+  <li><a href="#hyperparameter-optimization" id="toc-hyperparameter-optimization" class="nav-link" data-scroll-target="#hyperparameter-optimization">Hyperparameter Optimization</a></li>
+  <li><a href="#outcome-variables" id="toc-outcome-variables" class="nav-link" data-scroll-target="#outcome-variables">Outcome Variables</a></li>
+  </ul></li>
+  <li><a href="#results-performance" id="toc-results-performance" class="nav-link" data-scroll-target="#results-performance">Results &amp; Performance</a>
+  <ul class="collapse">
+  <li><a href="#model-accuracy" id="toc-model-accuracy" class="nav-link" data-scroll-target="#model-accuracy">Model Accuracy</a></li>
+  <li><a href="#clinical-interpretation" id="toc-clinical-interpretation" class="nav-link" data-scroll-target="#clinical-interpretation">Clinical Interpretation</a></li>
+  <li><a href="#calibration" id="toc-calibration" class="nav-link" data-scroll-target="#calibration">Calibration</a></li>
+  </ul></li>
+  <li><a href="#technical-innovations" id="toc-technical-innovations" class="nav-link" data-scroll-target="#technical-innovations">Technical Innovations</a>
+  <ul class="collapse">
+  <li><a href="#handling-imbalanced-data" id="toc-handling-imbalanced-data" class="nav-link" data-scroll-target="#handling-imbalanced-data">1. Handling Imbalanced Data</a></li>
+  <li><a href="#feature-engineering" id="toc-feature-engineering" class="nav-link" data-scroll-target="#feature-engineering">2. Feature Engineering</a></li>
+  <li><a href="#explainability-framework" id="toc-explainability-framework" class="nav-link" data-scroll-target="#explainability-framework">3. Explainability Framework</a></li>
+  </ul></li>
+  <li><a href="#impact-potential-benefits" id="toc-impact-potential-benefits" class="nav-link" data-scroll-target="#impact-potential-benefits">Impact &amp; Potential Benefits</a>
+  <ul class="collapse">
+  <li><a href="#potential-benefits-for-the-healthcare-system" id="toc-potential-benefits-for-the-healthcare-system" class="nav-link" data-scroll-target="#potential-benefits-for-the-healthcare-system">Potential Benefits for the Healthcare System</a></li>
+  <li><a href="#potential-benefits-for-patients" id="toc-potential-benefits-for-patients" class="nav-link" data-scroll-target="#potential-benefits-for-patients">Potential Benefits for Patients</a></li>
+  <li><a href="#long-term-population-health-impact" id="toc-long-term-population-health-impact" class="nav-link" data-scroll-target="#long-term-population-health-impact">Long-term Population Health Impact</a></li>
+  </ul></li>
+  <li><a href="#further-development-implementation-timeline" id="toc-further-development-implementation-timeline" class="nav-link" data-scroll-target="#further-development-implementation-timeline">Further Development &amp; Implementation Timeline</a>
+  <ul class="collapse">
+  <li><a href="#key-lessons-for-future-development" id="toc-key-lessons-for-future-development" class="nav-link" data-scroll-target="#key-lessons-for-future-development">Key Lessons for Future Development</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#references-links" id="toc-references-links" class="nav-link" data-scroll-target="#references-links">References &amp; Links</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">AI-Driven Risk Assessment Model for Swedish Dental Care</h1>
+<p class="subtitle lead">Developing Machine Learning Models to Predict Patient Risk and Optimize Resource Allocation</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jonas Samuelsson </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 31, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="executive-summary" class="level2">
+<h2 class="anchored" data-anchor-id="executive-summary">Executive Summary</h2>
+<p>At Sweden’s Dental and Pharmaceutical Benefits Agency (TLV), our team developed an automated risk assessment model using deep learning to predict patients’ future dental health needs. Working with historical data from over 4 million patients and 150 million dental visits since 2008, we created a prediction system that could accurately identify high-risk patients requiring preventive care. The deep learning model achieved 84% accuracy (ROC AUC) in predicting periodontitis and successfully differentiated between patients with high and low care needs, with a realized relative risk of 171:1 for the highest versus lowest risk groups.</p>
+<p><strong>Key Impact</strong>: This proof-of-concept study demonstrated that AI-driven risk assessment for dental care is both technically feasible and clinically valuable. Based on our findings, the Swedish government has tasked TLV with developing an enhanced model for implementation in Sweden’s national dental care subsidy system over the coming years, which will affect resource allocation decisions for millions of patients and potentially save billions of kronor annually while improving population-level oral health outcomes.</p>
+</section>
+<section id="background-challenge" class="level2">
+<h2 class="anchored" data-anchor-id="background-challenge">Background &amp; Challenge</h2>
+<section id="the-problem" class="level3">
+<h3 class="anchored" data-anchor-id="the-problem">The Problem</h3>
+<p>Sweden’s dental care system faced a fundamental resource allocation challenge. While healthy patients were visiting dentists more frequently than clinically recommended, high-risk patients who truly needed preventive care were not receiving adequate attention. This inefficiency stemmed from manual risk assessment processes that varied significantly across regions, leading to inconsistent care prioritization. The proposed solution of manual dentist assessments at every appointment would require an additional 10-25 minutes per visit, imposing a staggering cost of 1.2-3.1 billion SEK annually—representing 6-16% of total adult dental care spending. Furthermore, a trust-based system without automated controls created vulnerabilities to welfare fraud and over-treatment.</p>
+</section>
+<section id="project-goals" class="level3">
+<h3 class="anchored" data-anchor-id="project-goals">Project Goals</h3>
+<p>Our project aimed to explore whether these challenges could be addressed through an AI-driven approach. We set out to develop an automated, objective risk assessment system that could process 3 million annual assessments at scale while achieving high accuracy in predicting tooth loss and periodontitis. Critically, any solution would need to meet regulatory requirements for explainability, ensuring that patients could understand the factors driving their risk assessments. This proof-of-concept would determine whether such a system was technically feasible and could inform future development efforts by TLV.</p>
+</section>
+</section>
+<section id="approach-methodology" class="level2">
+<h2 class="anchored" data-anchor-id="approach-methodology">Approach &amp; Methodology</h2>
+<section id="data-infrastructure" class="level3">
+<h3 class="anchored" data-anchor-id="data-infrastructure">Data Infrastructure</h3>
+<p>We leveraged Sweden’s unique advantage: comprehensive structured data from the national dental care subsidy system since 2008. This rich dataset included over 150 million dental visits with detailed procedure codes for every treatment, patient demographics and health indicators, and geographic and socioeconomic factors. For our analysis, we used 61,050 patients in the training dataset (spanning January 2016 to August 2022) and 15,057 patients in the test dataset (January 2017 to August 2023), with up to 1,892 risk indicators engineered for each patient.</p>
+</section>
+<section id="model-development" class="level3">
+<h3 class="anchored" data-anchor-id="model-development">Model Development</h3>
+<p>We developed and compared three prediction models to assess whether increasing model complexity would yield meaningful improvements in predictive accuracy:</p>
+<section id="baseline-age-model" class="level4">
+<h4 class="anchored" data-anchor-id="baseline-age-model">1. Baseline Age Model</h4>
+<ul>
+<li>Simple logistic regression using only age (≥67 vs &lt;67)</li>
+<li>Served as benchmark for comparison</li>
+<li>ROC AUC: 55-58%</li>
+</ul>
+</section>
+<section id="logistic-regression-with-treatment-history" class="level4">
+<h4 class="anchored" data-anchor-id="logistic-regression-with-treatment-history">2. Logistic Regression with Treatment History</h4>
+<ul>
+<li>Incorporated comprehensive risk indicators:
+<ul>
+<li>Treatment frequency and types</li>
+<li>Number of remaining/intact teeth</li>
+<li>COVID-19 period adjustments</li>
+<li>Demographics and geographic factors</li>
+</ul></li>
+<li>ROC AUC: 71-80%</li>
+</ul>
+</section>
+<section id="deep-learning-neural-network" class="level4">
+<h4 class="anchored" data-anchor-id="deep-learning-neural-network">3. Deep Learning Neural Network</h4>
+<ul>
+<li>Sequential neural network with 1-3 hidden layers</li>
+<li>Built using TensorFlow/Keras with automated hyperparameter tuning</li>
+<li>Architecture optimized for handling:
+<ul>
+<li>Imbalanced outcomes (2-6% positive cases)</li>
+<li>High-dimensional input (1,892 features)</li>
+<li>Complex non-linear relationships</li>
+</ul></li>
+</ul>
+<p><strong>Technical specifications</strong>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model architecture (example configuration)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Input layer: <span class="dv">1</span>,<span class="dv">892</span> features (normalized)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Hidden layers: <span class="dv">1</span><span class="op">-</span><span class="dv">3</span> layers <span class="cf">with</span> ReLU activation</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> Layer <span class="dv">1</span>: <span class="dv">50</span><span class="op">-</span><span class="dv">75</span><span class="op">%</span> of <span class="bu">input</span> size</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> Layer <span class="dv">2</span>: <span class="dv">10</span><span class="op">-</span><span class="dv">40</span><span class="op">%</span> of <span class="bu">input</span> size  </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> Layer <span class="dv">3</span>: <span class="dv">5</span><span class="op">-</span><span class="dv">10</span><span class="op">%</span> of <span class="bu">input</span> size</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Output layer: Sigmoid activation <span class="cf">for</span> binary classification</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Regularization: L2 penalty (<span class="fl">0.001</span><span class="op">-</span><span class="fl">0.005</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Optimization: Adam optimizer (learning rate: <span class="dv">1</span><span class="op">-</span><span class="dv">4</span><span class="op">%</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Loss function: Binary cross<span class="op">-</span>entropy <span class="cf">with</span> <span class="kw">class</span> weighting</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="hyperparameter-optimization" class="level3">
+<h3 class="anchored" data-anchor-id="hyperparameter-optimization">Hyperparameter Optimization</h3>
+<p>To ensure optimal model performance, we implemented systematic hyperparameter tuning using Keras Tuner. This process tested 20 variants per model with 3 repetitions each to reduce random variation, training over 12 epochs. In total, we computed 2,520 models over 2.5 days of processing time, selecting the final models based on validation set performance.</p>
+</section>
+<section id="outcome-variables" class="level3">
+<h3 class="anchored" data-anchor-id="outcome-variables">Outcome Variables</h3>
+<p>We focused on predicting three key dental health outcomes:</p>
+<ol type="1">
+<li><strong>Tooth loss</strong>: Root canal treatment or extraction (6% of patients)</li>
+<li><strong>Periodontitis</strong>: Extensive periodontal treatment (2% of patients)</li>
+<li><strong>Combined outcome</strong>: Either condition (8% of patients)</li>
+</ol>
+</section>
+</section>
+<section id="results-performance" class="level2">
+<h2 class="anchored" data-anchor-id="results-performance">Results &amp; Performance</h2>
+<section id="model-accuracy" class="level3">
+<h3 class="anchored" data-anchor-id="model-accuracy">Model Accuracy</h3>
+<p>Our deep learning model demonstrated superior performance across all metrics, significantly outperforming both the simple age-based baseline and the traditional logistic regression approach:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Outcome</th>
+<th>Model Type</th>
+<th>ROC AUC</th>
+<th>Relative Risk*</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tooth loss</td>
+<td>Age-based</td>
+<td>55%</td>
+<td>1:1</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Logistic</td>
+<td>71%</td>
+<td>9:1</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><strong>Deep Learning</strong></td>
+<td><strong>71%</strong></td>
+<td><strong>15:1</strong></td>
+</tr>
+<tr class="even">
+<td>Periodontitis</td>
+<td>Age-based</td>
+<td>58%</td>
+<td>2:1</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Logistic</td>
+<td>80%</td>
+<td>11:1</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><strong>Deep Learning</strong></td>
+<td><strong>84%</strong></td>
+<td><strong>171:1</strong></td>
+</tr>
+</tbody>
+</table>
+<p>*Relative risk: Comparison of highest vs.&nbsp;lowest risk decile</p>
+<p>The periodontitis model achieved particularly impressive results, with an ROC AUC of 84%. The figure below illustrates the model’s discriminative performance:</p>
+<div class="quarto-figure quarto-figure-center" style="border: 1px solid #a0a0a0; border-radius: 4px; padding: 0.5rem; background-color: white; display: block;">
+<figure class="figure">
+<p><img src="roc_curve_periodontitis.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>ROC Curve for Periodontitis Prediction</figcaption>
+</figure>
+</div>
+</section>
+<section id="clinical-interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="clinical-interpretation">Clinical Interpretation</h3>
+<p>The model’s performance translates to meaningful clinical utility. When correctly identifying 75% of patients who will develop periodontitis, it simultaneously incorrectly classifies only 25% of healthy patients as high-risk. More remarkably, the model can differentiate between high and low-risk patients with exceptional precision: patients in the highest risk group are 171 times more likely to develop periodontitis than those in the lowest risk group.</p>
+</section>
+<section id="calibration" class="level3">
+<h3 class="anchored" data-anchor-id="calibration">Calibration</h3>
+<p>Beyond discriminative accuracy, we found that the models demonstrated excellent calibration. For tooth loss predictions, the predicted risks closely matched observed outcomes across all risk levels. For periodontitis, we observed near-perfect calibration up to the 95th percentile of risk scores, as shown in the figure below:</p>
+<div class="quarto-figure quarto-figure-center" style="border: 1px solid #a0a0a0; border-radius: 4px; padding: 0.5rem; background-color: white; display: block;">
+<figure class="figure">
+<p><img src="calibration_curve_periodontitis.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Calibration Curve for Periodontitis Prediction</figcaption>
+</figure>
+</div>
+<p>This calibration performance means the model’s probability estimates are reliable: if it predicts a patient has 20% risk, approximately 20% of such patients will actually experience that outcome. This reliability is crucial for clinical decision-making and patient communication.</p>
+</section>
+</section>
+<section id="technical-innovations" class="level2">
+<h2 class="anchored" data-anchor-id="technical-innovations">Technical Innovations</h2>
+<section id="handling-imbalanced-data" class="level3">
+<h3 class="anchored" data-anchor-id="handling-imbalanced-data">1. Handling Imbalanced Data</h3>
+<p>One of the project’s key challenges was working with highly imbalanced outcomes—only 2-6% of patients experienced the conditions we were trying to predict. We addressed this through several strategies: adjusting the loss function to give higher weight to the minority class, maintaining outcome distribution across train/test splits through stratified sampling, and using appropriate metrics like ROC AUC and precision-recall curves rather than simple accuracy measures.</p>
+</section>
+<section id="feature-engineering" class="level3">
+<h3 class="anchored" data-anchor-id="feature-engineering">2. Feature Engineering</h3>
+<p>We created a comprehensive set of risk indicators across multiple dimensions. These included binary indicators for the presence or absence of specific treatments, count variables capturing treatment frequency, time-based features distinguishing the COVID period from normal operations, geographic clustering using 9 county types and 3 municipality types, and interaction effects between demographics and treatment history. This multi-dimensional approach allowed the model to capture complex patterns in patient risk profiles.</p>
+</section>
+<section id="explainability-framework" class="level3">
+<h3 class="anchored" data-anchor-id="explainability-framework">3. Explainability Framework</h3>
+<p>Meeting regulatory requirements under Swedish Administrative Law §32 was non-negotiable for any future implementation. We developed a marginal effects framework that could translate model predictions into patient-friendly explanations:</p>
+<pre><code>For each patient:
+1. Calculate risk score (0-100)
+2. Identify top risk factors driving the score
+3. Express deviations from population average in standardized terms:
+   - "Slightly higher" (0-1 std dev)
+   - "Higher" (1-2 std dev)
+   - "Much higher" (2-3 std dev)
+   - "Extremely higher" (&gt;3 std dev)
+4. Generate natural language explanation</code></pre>
+<p><strong>Example output</strong>: &gt; “You were assigned to the high-risk group because your risk score was 80/100. Your risk score indicates higher risk than the average patient. An important explanation was that you received one root canal during the pandemic, which is much higher than the average patient. Another important explanation was…”</p>
+</section>
+</section>
+<section id="impact-potential-benefits" class="level2">
+<h2 class="anchored" data-anchor-id="impact-potential-benefits">Impact &amp; Potential Benefits</h2>
+<p>Our proof-of-concept study demonstrated the technical feasibility and potential value of AI-driven risk assessment in dental care. While the model itself is not yet implemented, our findings provide a foundation for TLV’s future development work and illustrate the potential benefits such a system could deliver.</p>
+<section id="potential-benefits-for-the-healthcare-system" class="level3">
+<h3 class="anchored" data-anchor-id="potential-benefits-for-the-healthcare-system">Potential Benefits for the Healthcare System</h3>
+<p>An implemented AI-based risk assessment system could deliver substantial value. The automated approach could potentially avoid 1.2-3.1 billion SEK annually in manual assessment costs while providing instant risk calculations instead of 10-25 minute manual assessments at each appointment. Automated controls could reduce welfare fraud risk, and the system would ensure uniform risk assessment across all regions, eliminating the current geographic variation in care prioritization.</p>
+</section>
+<section id="potential-benefits-for-patients" class="level3">
+<h3 class="anchored" data-anchor-id="potential-benefits-for-patients">Potential Benefits for Patients</h3>
+<p>For individual patients, such a system could enable better health outcomes through early identification and preventive care for high-risk individuals. More efficient resource allocation could reduce unnecessary visits and associated costs, while transparent, clear explanations for subsidy decisions would help patients understand their care recommendations. Critically, the system would apply the same assessment criteria regardless of location or provider, ensuring equitable access to preventive care.</p>
+</section>
+<section id="long-term-population-health-impact" class="level3">
+<h3 class="anchored" data-anchor-id="long-term-population-health-impact">Long-term Population Health Impact</h3>
+<p>Perhaps most importantly, our model demonstrates how AI could enable a fundamental shift from reactive to preventive dental care. By identifying high-risk patients before serious conditions develop and concentrating resources where they provide the most benefit, such a system could contribute to reducing the prevalence of advanced periodontal disease while generating long-term cost savings through prevention rather than treatment.</p>
+</section>
+</section>
+<section id="further-development-implementation-timeline" class="level2">
+<h2 class="anchored" data-anchor-id="further-development-implementation-timeline">Further Development &amp; Implementation Timeline</h2>
+<p>While our proof-of-concept successfully demonstrated the feasibility of AI-driven dental risk assessment, the model developed in this project has not been implemented in clinical practice. The primary achievement of this work was showing that such a system is both technically possible and clinically valuable, providing the evidence base needed for future development.</p>
+<p>Based on our findings, the Swedish government has now tasked TLV with developing an enhanced production-ready model for implementation in the national dental care subsidy system. This next phase of development, expected to take several years, will build upon our methodological foundation while addressing additional requirements for a production system.</p>
+<section id="key-lessons-for-future-development" class="level3">
+<h3 class="anchored" data-anchor-id="key-lessons-for-future-development">Key Lessons for Future Development</h3>
+<p>Our work revealed several critical insights that will inform TLV’s future development efforts:</p>
+<p><strong>Automation and Trust</strong>: Balancing automated efficiency with healthcare professionals’ clinical judgment requires careful system design. The production model will need to integrate seamlessly with clinical workflows while preserving dentists’ ability to apply professional expertise where appropriate.</p>
+<p><strong>Explainability is Non-Negotiable</strong>: Legal requirements for decision transparency under Swedish Administrative Law §32 shaped our technical approach from the start. The explainability framework we developed demonstrates one approach, but the production system will likely require even more sophisticated patient communication tools.</p>
+<p><strong>Scale Changes Everything</strong>: Our proof-of-concept worked with historical data, but a production system processing 3 million live assessments annually will face different challenges around data quality, real-time processing, and system integration with existing healthcare IT infrastructure.</p>
+<p><strong>Continuous Monitoring and Updating</strong>: A production model will require ongoing performance monitoring and periodic retraining as dental care practices and patient populations evolve over time.</p>
+<p>The timeline for implementing TLV’s enhanced model remains uncertain, with full deployment likely several years away. However, our work has established that AI-driven risk assessment for dental care is technically feasible and has laid the methodological groundwork for this important future development.</p>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This proof-of-concept project demonstrated how modern AI and machine learning could transform healthcare resource allocation at a national scale. By leveraging Sweden’s comprehensive dental care data and state-of-the-art deep learning techniques, our team created a system that:</p>
+<ul>
+<li>Achieves high predictive accuracy (84% ROC AUC for periodontitis)</li>
+<li>Could operate efficiently at scale (3 million assessments annually)</li>
+<li>Meets regulatory requirements for explainability</li>
+<li>Could deliver substantial economic benefits (1-3 billion SEK savings)</li>
+<li>Would improve patient outcomes through early risk identification</li>
+</ul>
+<p>Most importantly, we successfully established that AI-driven risk assessment for dental care is both technically feasible and clinically valuable. This foundational work has enabled the Swedish government to task TLV with developing an enhanced production model for future implementation in Sweden’s national dental care subsidy system. While the full deployment remains several years away, this project represents a crucial first step toward what could become one of the first large-scale deployments of AI for healthcare resource allocation in the Nordic countries.</p>
+<hr>
+</section>
+<section id="references-links" class="level2">
+<h2 class="anchored" data-anchor-id="references-links">References &amp; Links</h2>
+<ul>
+<li><strong>Full technical report</strong>: TLV (2025). “Behovsstyrd tandvård – En modell för framtiden”</li>
+<li><strong>Swedish dental care system</strong>: <a href="https://www.tlv.se">www.tlv.se</a></li>
+<li><strong>Related policy work</strong>: SOU 2024:70 “Tiotandvård – ett förstärkt högkostnadsskydd för tandvård”</li>
+</ul>
+<hr>
+<p><em>This case study represents proof-of-concept work conducted at the Swedish Dental and Pharmaceutical Benefits Agency (TLV) from 2022-2025. All analysis and modeling work was performed collaboratively with TLV’s analytical team and external domain experts. The model described here has not been implemented in clinical practice; based on our findings, TLV will develop an enhanced production model for future implementation.</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2025 Jonas Samuelsson. Built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.linkedin.com/in/jonsam19/"><i class="fa-brands fa-linkedin" aria-label="linkedin"></i></a> <a href="https://github.com/jonsam19"><i class="fa-brands fa-github" aria-label="github"></i></a> <a href="https://scholar.google.com/citations?user=rXyIKPUAAAAJ&amp;hl=en"><i class="fa-brands fa-google-scholar" aria-label="google-scholar"></i></a> <a href="mailto:jonas.samuelsson19@gmail.com"><i class="fa-solid fa-envelope" aria-label="envelope"></i></a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

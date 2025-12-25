@@ -3,18 +3,33 @@ project:
   output-dir: docs
 
 website:
-  title: "jonsam19.github.io"
+  title: "Jonas Samuelsson"
+  description: "Personal website for Jonas Samuelsson, data analyst working at the intersection of data science, public health, and policy."
   navbar:
+    title: "Jonas Samuelsson"
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: projects.qmd
+        text: Projects
+      - href: travel.qmd
+        text: Travel
+      - href: media/CV_Jonas_Samuelsson.pdf
+        text: CV
+  page-footer:
+    left: |
+      © 2025 Jonas Samuelsson. Built with [Quarto](https://quarto.org/).
+    center: |
+      [{{< fa brands linkedin >}}](https://www.linkedin.com/in/jonsam19/)
+      [{{< fa brands github >}}](https://github.com/jonsam19)
+      [{{< fa brands google-scholar >}}](https://scholar.google.com/citations?user=rXyIKPUAAAAJ&hl=en)
+      [{{< fa envelope >}}](mailto:jonas.samuelsson19@gmail.com)
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme:
+      - cosmo
+      - styles.scss
     toc: true
-
-editor: visual
+    page-layout: full
 

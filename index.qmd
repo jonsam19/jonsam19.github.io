@@ -1,11 +1,30 @@
 ---
-title: "jonsam19.github.io"
+title: "Jonas Samuelsson"
+image: media/headshot1.jpg
+toc: false
+about: 
+  template: trestles
+  image-shape: round
+  image-width: 22em
+  links:
+    - text: LinkedIn
+      icon: linkedin
+      href: https://www.linkedin.com/in/jonsam19/
+    - text: GitHub
+      icon: github
+      href: https://github.com/jonsam19
+    - text: Google Scholar
+      href: https://scholar.google.com/citations?user=rXyIKPUAAAAJ&hl=en
+      icon: googlescholar
+    - text: Email
+      icon: envelope
+      href: mailto:jonas.samuelsson19@gmail.com
 ---
+        
+# Introduction
 
-This is a Quarto website. 2
+Hello! My name is Jonas Samuelsson. I'm a data analyst and demographer at Sweden's Dental and Pharmaceutical Benefits Agency (TLV), where I work on health economics analysis, GIS tools for pharmacy accessibility planning, and risk assessment models. My recent analysis of dental market pricing was featured in a ministerial broadcast and helped shape government subsidy reforms launching in January 2026.
+I hold a Master's in Demography from Stockholm University, and have worked at Swedish government agencies, European health institutions including ECDC and Karolinska Institute, and the United Nations. I work primarily in R, Python, and SQL, with current interests in Bayesian methods and health economics.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Beyond data analysis, I'm deeply curious about how different societies organize themselves. I've travelled extensively across Europe, Asia, and beyond, seeking to understand demographic patterns, healthcare systems, and diverse communities—an interest that continually informs my analytical work.
 
-```{r}
-1 + 1
-```

@@ -1,0 +1,95 @@
+---
+title: "How Many Pharmacies Does Sweden Really Need?"
+description: "Using geographic optimization to design emergency pharmacy infrastructure for national crisis preparedness"
+author: "Jonas Samuelsson"
+date: "2025-10-31"
+categories: [geospatial, optimization, public-policy, R, data-analysis, healthcare, national-security]
+image: featured.png
+draft: false
+---
+
+## The Challenge
+
+In July 2022, Sweden's government issued a directive with serious implications: in light of Russia's invasion of Ukraine and Sweden's changing security situation, the country needed to prepare for potential crisis scenarios. TLV (the Dental and Pharmaceutical Benefits Agency), together with the Medical Products Agency and the E-health Agency, was tasked with designing a cost-effective system of emergency pharmacies that could ensure the public's access to medicines during peacetime crises, heightened preparedness, and ultimately war. The question we faced was simple: How many strategically-placed pharmacies does Sweden need to maintain pharmaceutical services if normal market conditions collapse?
+
+## The Stakes
+
+When Sweden joined NATO and tensions in Europe escalated, the country had to confront uncomfortable scenarios. What happens to pharmacy access if:
+
+- Commercial pharmacies close due to supply chain disruptions
+- Staff cannot safely travel to work during crisis
+- Parts of the country become isolated or contested
+- The normal market of ~1,400 pharmacies becomes unsustainable
+
+Pharmacies are critical infrastructure for national resilience. Too few emergency pharmacies means vulnerable populations lose access to life-saving medications. Too many means wasting public resources that could strengthen preparedness elsewhere. We needed to find the minimum number that maintains adequate national coverage under crisis conditions.
+
+## The Approach: Optimization Meets Geography
+
+We approached this as a classic Maximum Coverage Location Problem: given a fixed number of emergency pharmacies, where should they be placed to maximize population coverage? The methodology combined geographic data, demographic analysis, and optimization algorithms to find the answer.
+
+### Building the Data Foundation
+
+The analysis started with comprehensive open data sources. Statistics Sweden provided population distribution data with the country divided into 1km² grid squares—essential for understanding where people actually live. We had precise coordinates for all ~1,400 existing pharmacies nationwide, which served as potential emergency pharmacy locations. OpenStreetMap provided road network data for calculating realistic travel distances, accounting for Sweden's varied terrain from dense urban areas to remote northern regions.
+
+### The Optimization Strategy
+
+For each scenario we tested (ranging from 50 to 700 pharmacies), we needed to determine optimal placement. The approach balanced geographic equity with population efficiency: every county was guaranteed at least one pharmacy to prevent any region from being completely unserved, then remaining pharmacies were distributed proportionally based on population. Within each county, we identified locations that maximized coverage within a 10km radius.
+
+For each configuration we calculated both straight-line distances (as the crow flies) and actual driving distances using road networks. A location 8km away in straight-line distance might be 15km by winding mountain roads in northern Sweden. We created isochrones (areas reachable within specific distances) using the OpenRouteService API to understand true accessibility under realistic travel conditions.
+
+### Finding the Inflection Point
+
+Rather than selecting an arbitrary target, we ran the optimization across multiple scenarios and let the data reveal where adding more pharmacies stopped meaningfully improving coverage. The approach involved analyzing every 50-pharmacy increment from 50 to 700 to identify the point of diminishing returns where each additional pharmacy provided less and less marginal benefit.
+
+## How We Landed on 300
+
+When we plotted population coverage against pharmacy count across all scenarios, a pattern emerged. Below 300 pharmacies, coverage dropped quickly. At just 100 pharmacies, only 45% of the population would be within 10km driving distance of pharmaceutical services. This would leave millions of Swedes vulnerable during a crisis.
+
+At 300 pharmacies 90% of Sweden's population came within 20km driving distance. This threshold was identified as reasonable accessibility  under crisis conditions where people might need to travel further than normal. Going from 300 to 500 pharmacies only added 4 percentage points of coverage despite requiring 67% more facilities. The marginal benefit curve flattened dramatically beyond this point, indicating we had found the optimal balance between coverage and resource efficiency.
+
+| Metric | 100 Pharmacies | 300 Pharmacies | 500 Pharmacies | Current (1,408) |
+|--------|----------------|----------------|----------------|-----------------|
+| Population per pharmacy | 105,608 | 35,202 | 21,335 | 7,501 |
+| Mean distance (straight-line) | 15 km | 8 km | 5 km | 3 km |
+| Median distance | 8 km | 4 km | 3 km | 1 km |
+| Within 10km (driving) | 45% | **69%** | 80% | 87% |
+| Within 20km (driving) | 74% | **90%** | 94% | 96% |
+
+300 pharmacies emerged as the point where we achieve strong national coverage without excessive redundancy. It represents the optimal balance between:
+
+- Ensuring accessibility (90% within 20km)
+- Resource efficiency (diminishing returns beyond this point)
+- Geographic equity (proportional allocation by population)
+- Sweden's unique topology (urban concentration + sparse rural areas)
+
+## From Analysis to Policy
+
+Our analysis was published in TLV's 2023 report "Stärkt förmåga på apoteksmarknaden" (Strengthened Capacity in the Pharmacy Market), documenting the full methodology and findings. The 300 threshold subsequently appeared in proposed pharmacy legislation as the target number for state-run emergency pharmacies (riksapotek). The analysis was presented in nationwide ministerial broadcasts as Sweden grappled with its changing security environment, and it now guides operational decisions about emergency pharmacy placement in the evolving system.
+
+What made this particularly meaningful was seeing rigorous geographic data analysis directly inform national security planning. In a time of geopolitical uncertainty, evidence-based approaches to critical infrastructure resilience became more important than ever. The 300-pharmacy system represents a practical, cost-effective approach to ensuring Swedes maintain access to essential medications even in crisis scenarios that once seemed unthinkable.
+
+## The Code
+
+The full analysis is available on [GitHub](https://github.com/jonsam19/pharmacy_accessibility_sweden). This is a 2025 reproduction using the same methodology from the original 2023 TLV analysis, but built entirely with open data so the approach can be examined and reproduced.
+
+The repository includes complete documentation of data sources, step-by-step instructions, and all helper functions with detailed comments. Everything runs on open data—the methodology could be adapted for any country with similar data sources facing comparable infrastructure resilience questions.
+
+## Broader Applications
+
+This methodology extends beyond pharmacy planning to any critical infrastructure requiring geographic optimization under resource constraints. The same approach could inform:
+
+- Emergency service locations (fire stations, ambulances, civil defense shelters)
+- Healthcare facility planning during crisis scenarios
+- Food distribution points in disaster preparedness
+- Vaccination center placement during pandemics
+- Any facility where geographic coverage matters for population resilience
+
+The key is combining optimization algorithms (like MCLP) with geographic data (population distribution, networks) and domain constraints (budgets, equity concerns, security considerations). The 2020 COVID-19 pandemic and subsequent geopolitical shifts demonstrated that countries need evidence-based approaches to critical infrastructure resilience.
+
+## Want to Learn More?
+
+- **Full methodology**: See the [GitHub repository](https://github.com/jonsam19/pharmacy_accessibility_sweden)
+- **TLV Report (2023)**: [Stärkt förmåga på apoteksmarknaden](https://www.tlv.se/download/18.36ee6fe218c8adcaa227f01b/1704182347630/Starkt_formaga_p%C3%A5_apoteksmarknaden-slutrapport_2023.pdf)
+- **Legislative proposal**: [300 State-Run Pharmacies Proposal](https://www.svenskfarmaci.se/2024/12/05/apoteket-ab-ska-starta-kopa-och-driva-300-statliga-riksapotek/)
+- **Data sources**: [Statistics Sweden](https://www.scb.se/), [Pipos](https://pipos.se/vara-tjanster/serviceanalys), [OpenRouteService](https://openrouteservice.org/)
+- **Connect**: [LinkedIn](https://linkedin.com/in/jonsam19) | [GitHub](https://github.com/jonsam19) | [Email](mailto:jonas.samuelsson19@gmail.com)

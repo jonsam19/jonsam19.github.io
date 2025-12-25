@@ -4,3 +4,20 @@
 .Ruserdata
 
 /.quarto/
+
+# Claude Code project instructions
+CLAUDE.md
+
+# Quarto build artifacts
+*.knit.md
+*.utf8.md
+*_cache/
+*_files/
+*.knit-listing.json
+
+# Development scripts
+/scripts/
+
+# Unused generated files
+media/leaflet_map.html
+media/leaflet_map_files/

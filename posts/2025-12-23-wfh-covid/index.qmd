@@ -1,0 +1,51 @@
+---
+title: "Working From Home During COVID-19: Changes in Work Conditions and Private Life"
+description: "A population-based study examining associations between remote work and changes in work conditions and work-life balance in Stockholm, Sweden"
+author: "Jonas Samuelsson"
+date: "2022-11-01"
+categories: [COVID-19, work-from-home, work-life-balance, public-health, epidemiology, R]
+draft: false
+---
+
+## Background
+
+The COVID-19 pandemic transformed how millions of people work. In Stockholm, Sweden, the share of employees working from home jumped from 5% in 2019 to 55% by mid-2021. Unlike previous research on remote work—which focused on employees who voluntarily chose it—the pandemic created a natural experiment affecting broader populations, including many who had never worked remotely before.
+
+As research assistant at Karolinska Institutet, we saw an opportunity to study associations between this sudden, mandatory shift to working from home (WFH) and changes in work conditions and private life. Our study examined 4,985 employed Stockholm residents during May-August 2021, analyzing associations between WFH and various work-related factors and whether these associations varied by age, sex, and education level.
+
+## Methods
+
+We used cross-sectional data from the PART study, a population-based study of mental health, work, and relationships in Stockholm. The analysis included 4,985 employed adults aged 20-67 who reported their WFH frequency (mainly, sometimes, or never) and changes in work-related factors over the past year: workload, workplace support, cooperation and participation, control over work, work-life balance, and difficulty structuring the workday. We stratified analyses by WFH frequency, age, sex, and education level.
+
+## Key Findings
+
+Overall, 67% of respondents worked from home at least sometimes during the pandemic, with 45% working from home mainly. WFH was more common among highly educated workers (54%) compared to those with low education (19%), and less common among young adults aged 20-29 (19%) compared to older age groups (47-51%).
+
+### Both positive and negative aspects of working from home
+
+Those working from home reported both improvements and declines in different aspects of work. Those working from home reported increased control over their work and improved work-life balance, but also reported decreased cooperation, participation, and workplace support. This pattern held across demographic groups, suggesting an association between remote work and complex trade-offs.
+
+### Pronounced Gender Differences
+
+Women reported substantially higher increases in workload than men, regardless of whether they were working from home. Among those mainly WFH, 41% of women reported increased workload compared to 29% of men. This gender gap persisted even among those who never worked from home, where women also reported greater decreases in workplace support, participation, and control over work—patterns that may reflect sex differences in sectors like healthcare and experiences of stress.
+
+### Age-Related Polarization
+
+Young adults (20-29 years) reported the most polarized changes. When working from home, they reported both the highest increases and highest decreases in cooperation, participation, and support compared to older workers. They also reported more difficulty structuring their workday at home (only 32% reported no difficulty, compared to 55% of those aged 50-67). However, younger workers who were WFH also reported the largest increases in control over work (24% increase vs. 13% among those aged 50-67), highlighting the particularly pronounced associations between remote work and work changes in this age group—both positive and negative.
+
+## Implications and Limitations
+
+These findings reveal associations between remote work and both positive and negative changes in work conditions that varied significantly by demographics. The pattern of decreased cooperation and workplace support among those working remotely alongside increased autonomy and work-life balance points to important trade-offs. The pronounced gender gap in workload increases suggests that among women—particularly those in sectors like healthcare—remote work was not associated with reduced workload and may be linked to existing sectoral inequalities.
+
+The study has several limitations worth noting. The cross-sectional design prevents us from definitively attributing changes to WFH versus other pandemic-related factors. Self-reported data may include social desirability bias, particularly around WFH compliance. Response rates were lower among males and younger adults, though this is unlikely to substantially affect the observed associations between WFH and work conditions. Finally, Sweden's relatively light-touch pandemic response (few restrictions, temporary school closures) may limit generalizability, though work environments are likely similar to other European contexts.
+
+## Conclusions
+
+This population-based study of 4,985 Stockholm workers found that working from home during the pandemic was associated with increased control over work and improved work-life balance, while simultaneously being associated with decreased cooperation, participation, and workplace support. Women reported substantially greater workload increases than men, and young adults reported the most polarized changes—both the highest benefits and the steepest challenges. As remote and hybrid work arrangements persist beyond the pandemic, these findings highlight the need for organizations to actively address the social and collaborative dimensions of work that may be undermined when teams are distributed.
+
+---
+
+## Publication and Resources
+
+**Full publication:** Samuelsson J, Johansson G, Forsell Y, Möller J. How the Shift Toward Working From Home Has Impacted People's Work and Private Life. *J Occup Environ Med.* 2022;64(11):970-975. [https://doi.org/10.1097/JOM.0000000000002623](https://doi.org/10.1097/JOM.0000000000002623)
+

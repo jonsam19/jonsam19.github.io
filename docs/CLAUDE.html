@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Jonas Samuelsson</title>
+<title>claude – Jonas Samuelsson</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -34,6 +69,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
@@ -90,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -116,51 +152,113 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#claude.md" id="toc-claude.md" class="nav-link active" data-scroll-target="#claude.md">CLAUDE.md</a>
+  <ul class="collapse">
+  <li><a href="#project-overview" id="toc-project-overview" class="nav-link" data-scroll-target="#project-overview">Project Overview</a></li>
+  <li><a href="#architecture" id="toc-architecture" class="nav-link" data-scroll-target="#architecture">Architecture</a></li>
+  <li><a href="#key-files-structure" id="toc-key-files-structure" class="nav-link" data-scroll-target="#key-files-structure">Key Files Structure</a></li>
+  <li><a href="#development-commands" id="toc-development-commands" class="nav-link" data-scroll-target="#development-commands">Development Commands</a>
+  <ul class="collapse">
+  <li><a href="#building-the-site" id="toc-building-the-site" class="nav-link" data-scroll-target="#building-the-site">Building the Site</a></li>
+  <li><a href="#preview-during-development" id="toc-preview-during-development" class="nav-link" data-scroll-target="#preview-during-development">Preview During Development</a></li>
+  <li><a href="#publishing-to-github-pages" id="toc-publishing-to-github-pages" class="nav-link" data-scroll-target="#publishing-to-github-pages">Publishing to GitHub Pages</a></li>
+  </ul></li>
+  <li><a href="#content-guidelines" id="toc-content-guidelines" class="nav-link" data-scroll-target="#content-guidelines">Content Guidelines</a></li>
+  <li><a href="#r-integration" id="toc-r-integration" class="nav-link" data-scroll-target="#r-integration">R Integration</a></li>
+  <li><a href="#rstudio-project" id="toc-rstudio-project" class="nav-link" data-scroll-target="#rstudio-project">RStudio Project</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<div class="quarto-about-trestles column-page">
-  <div class="about-entity">
-    <img src="media/headshot1.jpg" class="about-image
-  round " style="height: 22em; width: 22em;">
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Jonas Samuelsson</h1>
-</div>
-<div class="quarto-title-meta column-page">
-  </div>
-</header>
-    <div class="about-links">
-  <a href="https://www.linkedin.com/in/jonsam19/" class="about-link" rel="" target="">
-    <i class="bi bi-linkedin"></i>
-     <span class="about-link-text">LinkedIn</span>
-  </a>
-  <a href="https://github.com/jonsam19" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">GitHub</span>
-  </a>
-  <a href="https://scholar.google.com/citations?user=rXyIKPUAAAAJ&amp;hl=en" class="about-link" rel="" target="">
-    <i class="bi bi-googlescholar"></i>
-     <span class="about-link-text">Google Scholar</span>
-  </a>
-  <a href="mailto:jonas.samuelsson19@gmail.com" class="about-link" rel="" target="">
-    <i class="bi bi-envelope"></i>
-     <span class="about-link-text">Email</span>
-  </a>
-</div>
-  </div>
-  <div class="about-contents"><main class="content column-page" id="quarto-document-content">
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
-<p>Hello! My name is Jonas Samuelsson. I’m a data analyst and demographer at Sweden’s Dental and Pharmaceutical Benefits Agency (TLV), where I work on health economics analysis, GIS tools for pharmacy accessibility planning, and risk assessment models. My recent analysis of dental market pricing was featured in a ministerial broadcast and helped shape government subsidy reforms launching in January 2026. I hold a Master’s in Demography from Stockholm University, and have worked at Swedish government agencies, European health institutions including ECDC and Karolinska Institute, and the United Nations. I work primarily in R, Python, and SQL, with current interests in Bayesian methods and health economics.</p>
-<p>Beyond data analysis, I’m deeply curious about how different societies organize themselves. I’ve travelled extensively across Europe, Asia, and beyond, seeking to understand demographic patterns, healthcare systems, and diverse communities—an interest that continually informs my analytical work.</p>
+<main class="content column-page-left" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="claude.md" class="level1">
+<h1>CLAUDE.md</h1>
+<p>This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.</p>
+<section id="project-overview" class="level2">
+<h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
+<p>This is a personal portfolio website built with Quarto, published as a GitHub Pages site. The site showcases Jonas Samuelsson’s professional work, projects, and travels.</p>
+</section>
+<section id="architecture" class="level2">
+<h2 class="anchored" data-anchor-id="architecture">Architecture</h2>
+<ul>
+<li><strong>Static Site Generator</strong>: Quarto (R-based literate programming and publication system)</li>
+<li><strong>Output Directory</strong>: <code>docs/</code> (configured for GitHub Pages)</li>
+<li><strong>Content Files</strong>: <code>.qmd</code> (Quarto markdown) files in root directory</li>
+<li><strong>Styling</strong>: Custom SCSS in <code>styles.scss</code> with color theme variables</li>
+<li><strong>Extensions</strong>: FontAwesome extension in <code>_extensions/quarto-ext/fontawesome/</code></li>
+</ul>
+</section>
+<section id="key-files-structure" class="level2">
+<h2 class="anchored" data-anchor-id="key-files-structure">Key Files Structure</h2>
+<ul>
+<li><code>_quarto.yml</code> - Main configuration file defining site structure, theme, and navbar</li>
+<li><code>index.qmd</code> - Home page with personal introduction and social links</li>
+<li><code>projects.qmd</code> - Portfolio of Shiny apps and data science projects</li>
+<li><code>travel.qmd</code> - Interactive world map showing countries visited (R code with leaflet)</li>
+<li><code>resources.qmd</code> - Additional resources page</li>
+<li><code>styles.scss</code> - Custom styling with defined color palette</li>
+<li><code>media/</code> - Static assets (images, CV PDF)</li>
+</ul>
+</section>
+<section id="development-commands" class="level2">
+<h2 class="anchored" data-anchor-id="development-commands">Development Commands</h2>
+<section id="building-the-site" class="level3">
+<h3 class="anchored" data-anchor-id="building-the-site">Building the Site</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="preview-during-development" class="level3">
+<h3 class="anchored" data-anchor-id="preview-during-development">Preview During Development</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="publishing-to-github-pages" class="level3">
+<h3 class="anchored" data-anchor-id="publishing-to-github-pages">Publishing to GitHub Pages</h3>
+<p>The site is automatically built to the <code>docs/</code> directory which is served by GitHub Pages.</p>
+</section>
+</section>
+<section id="content-guidelines" class="level2">
+<h2 class="anchored" data-anchor-id="content-guidelines">Content Guidelines</h2>
+<ul>
+<li>All content pages are <code>.qmd</code> files in the root directory</li>
+<li>Images and static files go in <code>media/</code> directory</li>
+<li>The site uses a custom color theme defined in <code>styles.scss</code>:
+<ul>
+<li>Primary colors: dark green (#858E79), light green (#aac4af), cream (#FDFBF7)</li>
+<li>Accent colors: purple (#9158A2), orange (#ad7237), gray (#64605f)</li>
+</ul></li>
+</ul>
+</section>
+<section id="r-integration" class="level2">
+<h2 class="anchored" data-anchor-id="r-integration">R Integration</h2>
+<p>The <code>travel.qmd</code> file contains R code that generates an interactive map using: - <code>leaflet</code> for interactive mapping - <code>rnaturalearth</code> for world country data - <code>sf</code> for spatial data handling - Countries visited are hardcoded in the R chunk</p>
+</section>
+<section id="rstudio-project" class="level2">
+<h2 class="anchored" data-anchor-id="rstudio-project">RStudio Project</h2>
+<p>This is configured as an RStudio project (<code>.Rproj</code> file) with: - UTF-8 encoding - 2 spaces for tabs - Code indexing enabled</p>
 
 
 </section>
-</main></div>
-</div>
- <!-- /main -->
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     

@@ -1,0 +1,165 @@
+---
+title: "Detecting Disease Trends: Statistical Evidence of Europe's Rising Legionnaires' Disease Burden"
+description: "How advanced time series analysis revealed a significant epidemiological shift across 25 European countries"
+author: "Jonas Samuelsson"
+date: "2023-03-16"
+categories: [epidemiology, time-series-analysis, forecasting, public-health, R, surveillance]
+draft: false
+---
+
+## Background
+
+The annual Legionnaires' disease (LD) notification rate in the EU/EEA increased from 1.2-1.4 cases per 100,000 population during 2012-2016 to 1.8-2.2 per 100,000 during 2017-2019. Since there were no changes in the EU/EEA surveillance case definition, surveillance system, or reported outbreak events that could explain these increases, we hypothesized a change in disease trend.
+
+As lead analyst at ECDC's Scientific Methods and Standards Unit, I worked with colleagues to measure weekly excess cases during 2017-2019 based on previous trends and determine whether a significant change in trend had occurred.
+
+## Study Objectives
+
+We aimed to:
+
+1. Analyze whether the number of observed cases in the EU/EEA during 2017-2019 was statistically significantly higher compared with 2012-2016
+2. Estimate any significant change (increase) in trend in 2017-2019 compared with 2012-2016
+3. Assess if there were differences according to age, sex, or importation of infection
+
+Understanding whether this represented a genuine trend change versus natural variation would help inform public health surveillance priorities and prevention strategies across Europe.
+
+## Methods
+
+We used two complementary time series analysis methods to assess the observed increase.
+
+### 1. Data Collection
+
+We analyzed data from ECDC's European Surveillance System (TESSy):
+
+- **55,821 Legionnaires' disease cases** from 25 EU/EEA countries
+- **Study period:** 2012-2019 (8 years of weekly data)
+- **Standardized case definitions** ensuring comparability across countries
+
+Five countries were excluded due to lack of weekly date variables or importation status information (Germany, Bulgaria, Luxembourg, Croatia, Iceland), representing 13.4% of the initial dataset.
+
+### 2. Retrospective Prediction Model
+
+We created a retrospective prediction of LD cases in 2017-2019 based on 2012-2016 data using harmonic regression models with ARIMA errors.
+
+**Model components:**
+
+- Fourier terms to capture seasonal patterns
+- ARIMA components for trend and autocorrelation  
+- Log transformation of observed data
+- Automated model selection using Akaike Information Criterion (AIC)
+
+This approach allowed us to estimate what case numbers would have been expected in 2017-2019 if the 2012-2016 pattern had continued, then compare observed versus predicted cases.
+
+### 3. Interrupted Time Series Analysis
+
+We used interrupted time series (ITS) regression to determine if there was a significant change in trend during 2017-2019 compared with 2012-2016.
+
+**ITS methodology:**
+
+- Seasonal component removed using STL decomposition
+- Linear regression comparing trends before and after 2017
+- Autoregressive terms added to account for serial correlation
+- Statistical testing of whether trend slopes differed significantly between periods
+
+## Results
+
+Both analytical methods indicated that the observed increase in 2017-2019 was statistically significant compared with the 2012-2016 period.
+
+### Retrospective Prediction Analysis
+
+The forecasting model showed that observed cases during 2017-2019 exceeded predicted levels:
+
+| Metric | 2017 | 2018 | 2019 | 2017-2019 Total |
+|--------|------|------|------|-----------------|
+| **Observed cases** | 7,935 | 9,854 | 9,741 | 27,530 |
+| **Predicted cases** | 6,525 | 6,849 | 7,193 | 20,566 |
+| **Excess cases** | 1,410 | 3,005 | 2,548 | 6,964 (33.9%) |
+| **Cases above 80% PI** | 409 | 1,456 | 955 | 2,820 |
+| **Weeks above 95% PI** | 7 | 19 | 13 | 39 weeks |
+
+The model predicted 20,566 cases for 2017-2019 based on 2012-2016 data. We observed 27,530 cases—an excess of 6,964 cases (33.9%). Over the three-year period, 85 weeks had cases above the 80% prediction interval, and 39 weeks exceeded the 95% prediction interval.
+
+### Interrupted Time Series Analysis
+
+The ITS regression tested whether the trend in weekly cases changed significantly between the two periods:
+
+- **2012-2016 trend:** β₁ = 0.044 (95% CI: -0.003 to 0.091, p = 0.064) - no significant trend
+- **2017-2019 trend change:** β₃ = 0.135 (95% CI: 0.022 to 0.248, p = 0.019) - significant positive change
+
+The analysis indicated a statistically significant increase in trend beginning in 2017 compared with the previous five years.
+
+### Stratified Analysis
+
+The analysis was repeated for different subgroups to understand where increases were most pronounced:
+
+**Age groups:**
+
+- Excess cases were observed across all age groups (19.8% to 47.0% above predicted)
+- The strongest significant trend increases were observed in age groups >60 years:
+  - 60-69 years: β₃ = 0.054 (p = 0.004)
+  - 70-79 years: β₃ = 0.046 (p < 0.001)
+  - ≥80 years: β₃ = 0.041 (p = 0.001)
+
+**Sex:**
+
+- Males: No significant trend in 2012-2016, but significant trend increase in 2017-2019 (β₃ = 0.094, p = 0.033)
+- Females: Positive trend in 2012-2016, with additional significant increase in 2017-2019 (β₃ = 0.065, p = 0.001)
+
+**Origin:**
+
+- Domestic cases: Significant trend increase in 2017-2019 (β₃ = 0.125, p = 0.021)
+- Imported cases: Positive trend in 2012-2016, but no significant trend change in 2017-2019 (β₃ = -0.007, p = 0.38)
+
+These findings indicated that the increase was most pronounced in older age groups and in non-travel-related cases.
+
+## Discussion
+
+Our study showed a significant increasing trend in LD cases in the EU/EEA during 2017-2019 compared with the previous five years. The distribution of cases per week suggested an overall amplification of seasonal trends, with summer peaks in 2017-2019 growing higher than the 2012-2016 range.
+
+### Sensitivity Analysis
+
+In November 2014, Portugal experienced an outbreak contributing 291 cases. To assess whether this influenced our findings, we repeated the analysis excluding these cases. The results showed a 35.4% excess (compared to 33.9% with the outbreak included), with differences mainly in late 2019. This confirmed that our main findings were not driven by the 2014 outbreak.
+
+### Potential Contributing Factors
+
+While this study established that the trend changed, it did not aim to identify causal factors. However, several factors may have contributed to the observed increase:
+
+**Demographic changes:** Europe's population aged 65+ increased by 3.0 percentage points as a share of total population between 2010-2020. Since older individuals are at higher risk for LD, demographic aging may contribute to rising case numbers.
+
+**Climate patterns:** Studies have found associations between LD incidence and weather conditions such as warmer temperatures, higher humidity, and increased rainfall. The years 2014, 2015, 2018, and 2019 were among Europe's warmest years on record by the end of 2019.
+
+**Building water systems:** Risk factors for Legionella growth in engineered water systems include system design, water temperature, and biofilm accumulation. Changes in building practices or maintenance could influence disease risk.
+
+**Tourism patterns:** Tourism statistics showed a continuous increase in nights spent in tourist accommodation establishments by both domestic and international guests during 2012-2019, though imported cases did not show a significant trend increase in our analysis.
+
+These potential contributing factors warrant further investigation to better understand the determinants of the observed increase.
+
+### Study Limitations
+
+The analysis excluded five countries due to incomplete data, representing 13.4% of initially available cases. However, the percentage of excluded cases remained stable across years (10.9%-14.3%), suggesting minimal impact on trend assessment.
+
+## Code and Data Availability
+
+The analysis code is available on GitHub: [EU-ECDC/LegionnairesDiseaseInEUEEA](https://github.com/EU-ECDC/LegionnairesDiseaseInEUEEA)
+
+The repository includes:
+
+- R scripts for time series model fitting (fable package)
+- Interrupted time series regression implementation  
+- Stratified analysis code for age/sex/origin subgroups
+- Visualization code for figures
+- Complete methodology documentation
+
+The analysis was conducted using R software (version 4.0.5) with the tidyverts packages (tsibble, fable, fabletools, feasts).
+
+---
+
+## Publication and Resources
+
+**Full publication:** Samuelsson J, Payne Hallström L, Marrone G, Gomes Dias J. Legionnaires' disease in the EU/EEA: increasing trend from 2017 to 2019. *Euro Surveill.* 2023;28(11):pii=2200114. [https://doi.org/10.2807/1560-7917.ES.2023.28.11.2200114](https://doi.org/10.2807/1560-7917.ES.2023.28.11.2200114)
+
+**Additional resources:**
+
+- [GitHub repository with analysis code](https://github.com/EU-ECDC/LegionnairesDiseaseInEUEEA)
+- [ECDC annual Legionnaires' disease surveillance reports](https://www.ecdc.europa.eu/en/legionnaires-disease)
+- [LinkedIn](https://linkedin.com/in/jonsam19) | [GitHub](https://github.com/jonsam19) | [Google Scholar](https://scholar.google.com/citations?user=rXyIKPUAAAAJ)

@@ -1,0 +1,206 @@
+---
+title: "AI-Driven Risk Assessment Model for Swedish Dental Care"
+subtitle: "Developing Machine Learning Models to Predict Patient Risk and Optimize Resource Allocation"
+author: "Jonas Samuelsson"
+date: "2025-10-31"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: true
+---
+
+## Executive Summary
+
+At Sweden's Dental and Pharmaceutical Benefits Agency (TLV), our team developed an automated risk assessment model using deep learning to predict patients' future dental health needs. Working with historical data from over 4 million patients and 150 million dental visits since 2008, we created a prediction system that could accurately identify high-risk patients requiring preventive care. The deep learning model achieved 84% accuracy (ROC AUC) in predicting periodontitis and successfully differentiated between patients with high and low care needs, with a realized relative risk of 171:1 for the highest versus lowest risk groups.
+
+**Key Impact**: This proof-of-concept study demonstrated that AI-driven risk assessment for dental care is both technically feasible and clinically valuable. Based on our findings, the Swedish government has tasked TLV with developing an enhanced model for implementation in Sweden's national dental care subsidy system over the coming years, which will affect resource allocation decisions for millions of patients and potentially save billions of kronor annually while improving population-level oral health outcomes.
+
+## Background & Challenge
+
+### The Problem
+
+Sweden's dental care system faced a fundamental resource allocation challenge. While healthy patients were visiting dentists more frequently than clinically recommended, high-risk patients who truly needed preventive care were not receiving adequate attention. This inefficiency stemmed from manual risk assessment processes that varied significantly across regions, leading to inconsistent care prioritization. The proposed solution of manual dentist assessments at every appointment would require an additional 10-25 minutes per visit, imposing a staggering cost of 1.2-3.1 billion SEK annually—representing 6-16% of total adult dental care spending. Furthermore, a trust-based system without automated controls created vulnerabilities to welfare fraud and over-treatment.
+
+### Project Goals
+
+Our project aimed to explore whether these challenges could be addressed through an AI-driven approach. We set out to develop an automated, objective risk assessment system that could process 3 million annual assessments at scale while achieving high accuracy in predicting tooth loss and periodontitis. Critically, any solution would need to meet regulatory requirements for explainability, ensuring that patients could understand the factors driving their risk assessments. This proof-of-concept would determine whether such a system was technically feasible and could inform future development efforts by TLV.
+
+## Approach & Methodology
+
+### Data Infrastructure
+
+We leveraged Sweden's unique advantage: comprehensive structured data from the national dental care subsidy system since 2008. This rich dataset included over 150 million dental visits with detailed procedure codes for every treatment, patient demographics and health indicators, and geographic and socioeconomic factors. For our analysis, we used 61,050 patients in the training dataset (spanning January 2016 to August 2022) and 15,057 patients in the test dataset (January 2017 to August 2023), with up to 1,892 risk indicators engineered for each patient.
+
+### Model Development
+
+We developed and compared three prediction models to assess whether increasing model complexity would yield meaningful improvements in predictive accuracy:
+
+#### 1. Baseline Age Model
+- Simple logistic regression using only age (≥67 vs <67)
+- Served as benchmark for comparison
+- ROC AUC: 55-58%
+
+#### 2. Logistic Regression with Treatment History
+- Incorporated comprehensive risk indicators:
+  - Treatment frequency and types
+  - Number of remaining/intact teeth
+  - COVID-19 period adjustments
+  - Demographics and geographic factors
+- ROC AUC: 71-80%
+
+#### 3. Deep Learning Neural Network
+- Sequential neural network with 1-3 hidden layers
+- Built using TensorFlow/Keras with automated hyperparameter tuning
+- Architecture optimized for handling:
+  - Imbalanced outcomes (2-6% positive cases)
+  - High-dimensional input (1,892 features)
+  - Complex non-linear relationships
+  
+**Technical specifications**:
+```python
+# Model architecture (example configuration)
+- Input layer: 1,892 features (normalized)
+- Hidden layers: 1-3 layers with ReLU activation
+  - Layer 1: 50-75% of input size
+  - Layer 2: 10-40% of input size  
+  - Layer 3: 5-10% of input size
+- Output layer: Sigmoid activation for binary classification
+- Regularization: L2 penalty (0.001-0.005)
+- Optimization: Adam optimizer (learning rate: 1-4%)
+- Loss function: Binary cross-entropy with class weighting
+```
+
+### Hyperparameter Optimization
+
+To ensure optimal model performance, we implemented systematic hyperparameter tuning using Keras Tuner. This process tested 20 variants per model with 3 repetitions each to reduce random variation, training over 12 epochs. In total, we computed 2,520 models over 2.5 days of processing time, selecting the final models based on validation set performance.
+
+### Outcome Variables
+
+We focused on predicting three key dental health outcomes:
+
+1. **Tooth loss**: Root canal treatment or extraction (6% of patients)
+2. **Periodontitis**: Extensive periodontal treatment (2% of patients)
+3. **Combined outcome**: Either condition (8% of patients)
+
+## Results & Performance
+
+### Model Accuracy
+
+Our deep learning model demonstrated superior performance across all metrics, significantly outperforming both the simple age-based baseline and the traditional logistic regression approach:
+
+| Outcome | Model Type | ROC AUC | Relative Risk* |
+|---------|-----------|---------|----------------|
+| Tooth loss | Age-based | 55% | 1:1 |
+| | Logistic | 71% | 9:1 |
+| | **Deep Learning** | **71%** | **15:1** |
+| Periodontitis | Age-based | 58% | 2:1 |
+| | Logistic | 80% | 11:1 |
+| | **Deep Learning** | **84%** | **171:1** |
+
+*Relative risk: Comparison of highest vs. lowest risk decile
+
+The periodontitis model achieved particularly impressive results, with an ROC AUC of 84%. The figure below illustrates the model's discriminative performance:
+
+![ROC Curve for Periodontitis Prediction](roc_curve_periodontitis.png){width=60% style="border: 1px solid #a0a0a0; border-radius: 4px; padding: 0.5rem; background-color: white; display: block;"}
+
+### Clinical Interpretation
+
+The model's performance translates to meaningful clinical utility. When correctly identifying 75% of patients who will develop periodontitis, it simultaneously incorrectly classifies only 25% of healthy patients as high-risk. More remarkably, the model can differentiate between high and low-risk patients with exceptional precision: patients in the highest risk group are 171 times more likely to develop periodontitis than those in the lowest risk group.
+
+### Calibration
+
+Beyond discriminative accuracy, we found that the models demonstrated excellent calibration. For tooth loss predictions, the predicted risks closely matched observed outcomes across all risk levels. For periodontitis, we observed near-perfect calibration up to the 95th percentile of risk scores, as shown in the figure below:
+
+![Calibration Curve for Periodontitis Prediction](calibration_curve_periodontitis.png){width=60% style="border: 1px solid #a0a0a0; border-radius: 4px; padding: 0.5rem; background-color: white; display: block;"}
+
+This calibration performance means the model's probability estimates are reliable: if it predicts a patient has 20% risk, approximately 20% of such patients will actually experience that outcome. This reliability is crucial for clinical decision-making and patient communication.
+
+## Technical Innovations
+
+### 1. Handling Imbalanced Data
+
+One of the project's key challenges was working with highly imbalanced outcomes—only 2-6% of patients experienced the conditions we were trying to predict. We addressed this through several strategies: adjusting the loss function to give higher weight to the minority class, maintaining outcome distribution across train/test splits through stratified sampling, and using appropriate metrics like ROC AUC and precision-recall curves rather than simple accuracy measures.
+
+### 2. Feature Engineering
+
+We created a comprehensive set of risk indicators across multiple dimensions. These included binary indicators for the presence or absence of specific treatments, count variables capturing treatment frequency, time-based features distinguishing the COVID period from normal operations, geographic clustering using 9 county types and 3 municipality types, and interaction effects between demographics and treatment history. This multi-dimensional approach allowed the model to capture complex patterns in patient risk profiles.
+
+### 3. Explainability Framework
+
+Meeting regulatory requirements under Swedish Administrative Law §32 was non-negotiable for any future implementation. We developed a marginal effects framework that could translate model predictions into patient-friendly explanations:
+
+```
+For each patient:
+1. Calculate risk score (0-100)
+2. Identify top risk factors driving the score
+3. Express deviations from population average in standardized terms:
+   - "Slightly higher" (0-1 std dev)
+   - "Higher" (1-2 std dev)
+   - "Much higher" (2-3 std dev)
+   - "Extremely higher" (>3 std dev)
+4. Generate natural language explanation
+```
+
+**Example output**:
+> "You were assigned to the high-risk group because your risk score was 80/100. Your risk score indicates higher risk than the average patient. An important explanation was that you received one root canal during the pandemic, which is much higher than the average patient. Another important explanation was..."
+
+## Impact & Potential Benefits
+
+Our proof-of-concept study demonstrated the technical feasibility and potential value of AI-driven risk assessment in dental care. While the model itself is not yet implemented, our findings provide a foundation for TLV's future development work and illustrate the potential benefits such a system could deliver.
+
+### Potential Benefits for the Healthcare System
+
+An implemented AI-based risk assessment system could deliver substantial value. The automated approach could potentially avoid 1.2-3.1 billion SEK annually in manual assessment costs while providing instant risk calculations instead of 10-25 minute manual assessments at each appointment. Automated controls could reduce welfare fraud risk, and the system would ensure uniform risk assessment across all regions, eliminating the current geographic variation in care prioritization.
+
+### Potential Benefits for Patients
+
+For individual patients, such a system could enable better health outcomes through early identification and preventive care for high-risk individuals. More efficient resource allocation could reduce unnecessary visits and associated costs, while transparent, clear explanations for subsidy decisions would help patients understand their care recommendations. Critically, the system would apply the same assessment criteria regardless of location or provider, ensuring equitable access to preventive care.
+
+### Long-term Population Health Impact
+
+Perhaps most importantly, our model demonstrates how AI could enable a fundamental shift from reactive to preventive dental care. By identifying high-risk patients before serious conditions develop and concentrating resources where they provide the most benefit, such a system could contribute to reducing the prevalence of advanced periodontal disease while generating long-term cost savings through prevention rather than treatment.
+
+## Further Development & Implementation Timeline
+
+While our proof-of-concept successfully demonstrated the feasibility of AI-driven dental risk assessment, the model developed in this project has not been implemented in clinical practice. The primary achievement of this work was showing that such a system is both technically possible and clinically valuable, providing the evidence base needed for future development.
+
+Based on our findings, the Swedish government has now tasked TLV with developing an enhanced production-ready model for implementation in the national dental care subsidy system. This next phase of development, expected to take several years, will build upon our methodological foundation while addressing additional requirements for a production system.
+
+### Key Lessons for Future Development
+
+Our work revealed several critical insights that will inform TLV's future development efforts:
+
+**Automation and Trust**: Balancing automated efficiency with healthcare professionals' clinical judgment requires careful system design. The production model will need to integrate seamlessly with clinical workflows while preserving dentists' ability to apply professional expertise where appropriate.
+
+**Explainability is Non-Negotiable**: Legal requirements for decision transparency under Swedish Administrative Law §32 shaped our technical approach from the start. The explainability framework we developed demonstrates one approach, but the production system will likely require even more sophisticated patient communication tools.
+
+**Scale Changes Everything**: Our proof-of-concept worked with historical data, but a production system processing 3 million live assessments annually will face different challenges around data quality, real-time processing, and system integration with existing healthcare IT infrastructure.
+
+**Continuous Monitoring and Updating**: A production model will require ongoing performance monitoring and periodic retraining as dental care practices and patient populations evolve over time.
+
+The timeline for implementing TLV's enhanced model remains uncertain, with full deployment likely several years away. However, our work has established that AI-driven risk assessment for dental care is technically feasible and has laid the methodological groundwork for this important future development.
+
+## Conclusion
+
+This proof-of-concept project demonstrated how modern AI and machine learning could transform healthcare resource allocation at a national scale. By leveraging Sweden's comprehensive dental care data and state-of-the-art deep learning techniques, our team created a system that:
+
+- Achieves high predictive accuracy (84% ROC AUC for periodontitis)
+- Could operate efficiently at scale (3 million assessments annually)
+- Meets regulatory requirements for explainability
+- Could deliver substantial economic benefits (1-3 billion SEK savings)
+- Would improve patient outcomes through early risk identification
+
+Most importantly, we successfully established that AI-driven risk assessment for dental care is both technically feasible and clinically valuable. This foundational work has enabled the Swedish government to task TLV with developing an enhanced production model for future implementation in Sweden's national dental care subsidy system. While the full deployment remains several years away, this project represents a crucial first step toward what could become one of the first large-scale deployments of AI for healthcare resource allocation in the Nordic countries.
+
+---
+
+## References & Links
+
+- **Full technical report**: TLV (2025). "Behovsstyrd tandvård – En modell för framtiden"
+- **Swedish dental care system**: [www.tlv.se](https://www.tlv.se)
+- **Related policy work**: SOU 2024:70 "Tiotandvård – ett förstärkt högkostnadsskydd för tandvård"
+
+---
+
+*This case study represents proof-of-concept work conducted at the Swedish Dental and Pharmaceutical Benefits Agency (TLV) from 2022-2025. All analysis and modeling work was performed collaboratively with TLV's analytical team and external domain experts. The model described here has not been implemented in clinical practice; based on our findings, TLV will develop an enhanced production model for future implementation.*

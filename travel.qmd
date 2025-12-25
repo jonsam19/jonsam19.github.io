@@ -1,0 +1,120 @@
+---
+title: "Travel"
+page-layout: full
+listing:
+  id: travel-listing
+  contents: posts/travel
+  sort: "date desc"
+  type: grid
+  categories: false
+  fields: [image, date, title, description]
+  feed: true
+---
+
+```{r}
+#| echo: false
+#| warning: false
+library(tidyverse)
+library(sf)
+library(rnaturalearth)
+library(leaflet)
+library(leaflet.extras)
+library(htmlwidgets)
+library(htmltools)
+
+countries_visited <- c("Sweden", "Norway", "Denmark", "Iceland", "Finland",
+                       "Greenland", "United Kingdom", "Germany", "Netherlands",
+                       "Belgium", "France", "Portugal", "Spain", "Switzerland",
+                       "Austria", "Italy", "Poland", "Czechia", "Slovakia",
+                       "Hungary", "Croatia", "Bosnia and Herz.", "Serbia", "Montenegro", "Vatican", "Lithuania", "Uzbekistan", "South Korea",
+                       "Kosovo", "Albania", "North Macedonia", "Romania", "Greece",
+                       "Turkey", "Estonia", "Latvia", "Ukraine", "Azerbaijan",
+                       "Georgia", "Israel", "Kyrgyzstan", "China", "Myanmar",
+                       "Malaysia", "Singapore", "Cambodia", "United States of America", "Canada",
+                       "United Arab Emirates", "Palestine")
+
+current_location <- "Sweden"
+next_destination <- "Sri Lanka"
+num_visited <- length(countries_visited)
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+visited_map <- world |>
+  filter(name != "Antarctica") |>
+  mutate(visited = case_when(
+    name %in% c(countries_visited) & !(name %in% c(current_location, next_destination)) ~ "Visited",
+    name == current_location ~ "Current location",
+    name == next_destination ~ "Next destination",
+    TRUE ~ "Never visited"))
+
+ pal_visited <- colorFactor(
+  palette = c("red", "#e8e8e8", "orange", "#aac4af"),
+  domain = c("Current location", "Visited", "Next destination", "Never visited"))
+
+visited_bounds <- visited_map |>
+  #filter(visited %in% c("Visited", "Current location", "Next destination")) |>
+  st_bbox()
+
+travel_map <- leaflet(options = leafletOptions(
+    zoomControl = FALSE,
+    attributionControl = FALSE,
+    dragging = FALSE,
+    scrollWheelZoom = FALSE,
+    doubleClickZoom = FALSE,
+    touchZoom = FALSE,
+    boxZoom = FALSE,
+    keyboard = FALSE
+  ), height = 10000, width = 15000) |>
+  addPolygons(data = visited_map,
+    fillColor = ~pal_visited(visited),
+    opacity = 1,
+    weight = 0.2,
+    color = "black",
+    fillOpacity = 1,
+    label = ~paste0(name, " - ", visited),
+    labelOptions = labelOptions(
+      style = list("font-size" = "16px"),
+      direction = "auto"
+    ),
+    highlightOptions = highlightOptions(
+      stroke = 4,
+      weight = 0.5,
+      color = "black")) |>
+  setMapWidgetStyle(list(
+    background = "transparent"
+  )) |>
+    fitBounds(
+    lng1 = visited_bounds[["xmin"]],
+    lat1 = visited_bounds[["ymin"]],
+    lng2 = visited_bounds[["xmax"]],
+    lat2 = visited_bounds[["ymax"]],
+    options = list(padding = c(0, 0))
+  )
+```
+
+## Map
+
+:::: {.grid}
+
+::: {.g-col-12 .g-col-md-4}
+**Current Location:** `r current_location`
+
+**Countries Visited:** `r num_visited`
+
+**Next Destination:** `r next_destination`
+:::
+
+::: {.g-col-12 .g-col-md-8}
+```{r}
+#| echo: false
+div(id = "map-container", style = "margin: 0; padding: 0; line-height: 0; line-width: 0", 
+travel_map)
+```
+:::
+
+::::
+
+## Stories
+
+::: {#travel-listing}
+:::

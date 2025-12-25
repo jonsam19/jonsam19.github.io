@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Jonas Samuelsson</title>
+<title>Blog – Jonas Samuelsson</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,10 +30,13 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
@@ -68,7 +71,65 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-image','listing-date','listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -90,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -116,51 +177,185 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Q09WSUQtMTk=">COVID-19 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGF0YS1hbmFseXNpcw==">data-analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZXBpZGVtaW9sb2d5">epidemiology <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Zm9yZWNhc3Rpbmc=">forecasting <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z2Vvc3BhdGlhbA==">geospatial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aGVhbHRoY2FyZQ==">healthcare <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bmF0aW9uYWwtc2VjdXJpdHk=">national-security <span class="quarto-category-count">(1)</span></div><div class="category" data-category="b3B0aW1pemF0aW9u">optimization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHVibGljLWhlYWx0aA==">public-health <span class="quarto-category-count">(2)</span></div><div class="category" data-category="cHVibGljLXBvbGljeQ==">public-policy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(3)</span></div><div class="category" data-category="c3VydmVpbGxhbmNl">surveillance <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGltZS1zZXJpZXMtYW5hbHlzaXM=">time-series-analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="d29yay1mcm9tLWhvbWU=">work-from-home <span class="quarto-category-count">(1)</span></div><div class="category" data-category="d29yay1saWZlLWJhbGFuY2U=">work-life-balance <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
-<div class="quarto-about-trestles column-page">
-  <div class="about-entity">
-    <img src="media/headshot1.jpg" class="about-image
-  round " style="height: 22em; width: 22em;">
+<main class="content column-page-left" id="quarto-document-content">
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Jonas Samuelsson</h1>
+<h1 class="title">Blog</h1>
 </div>
-<div class="quarto-title-meta column-page">
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
   </div>
+  
+
+
 </header>
-    <div class="about-links">
-  <a href="https://www.linkedin.com/in/jonsam19/" class="about-link" rel="" target="">
-    <i class="bi bi-linkedin"></i>
-     <span class="about-link-text">LinkedIn</span>
-  </a>
-  <a href="https://github.com/jonsam19" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">GitHub</span>
-  </a>
-  <a href="https://scholar.google.com/citations?user=rXyIKPUAAAAJ&amp;hl=en" class="about-link" rel="" target="">
-    <i class="bi bi-googlescholar"></i>
-     <span class="about-link-text">Google Scholar</span>
-  </a>
-  <a href="mailto:jonas.samuelsson19@gmail.com" class="about-link" rel="" target="">
-    <i class="bi bi-envelope"></i>
-     <span class="about-link-text">Email</span>
-  </a>
-</div>
-  </div>
-  <div class="about-contents"><main class="content column-page" id="quarto-document-content">
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
-<p>Hello! My name is Jonas Samuelsson. I’m a data analyst and demographer at Sweden’s Dental and Pharmaceutical Benefits Agency (TLV), where I work on health economics analysis, GIS tools for pharmacy accessibility planning, and risk assessment models. My recent analysis of dental market pricing was featured in a ministerial broadcast and helped shape government subsidy reforms launching in January 2026. I hold a Master’s in Demography from Stockholm University, and have worked at Swedish government agencies, European health institutions including ECDC and Karolinska Institute, and the United Nations. I work primarily in R, Python, and SQL, with current interests in Bayesian methods and health economics.</p>
-<p>Beyond data analysis, I’m deeply curious about how different societies organize themselves. I’ve travelled extensively across Europe, Asia, and beyond, seeking to understand demographic patterns, healthcare systems, and diverse communities—an interest that continually informs my analytical work.</p>
 
 
-</section>
-</main></div>
+<p>Welcome to my blog where I share insights about data analysis, statistics, and public health research.</p>
+
+
+
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="Z2Vvc3BhdGlhbCUyQ29wdGltaXphdGlvbiUyQ3B1YmxpYy1wb2xpY3klMkNSJTJDZGF0YS1hbmFseXNpcyUyQ2hlYWx0aGNhcmUlMkNuYXRpb25hbC1zZWN1cml0eQ==" data-listing-date-sort="1761865200000" data-listing-file-modified-sort="1766692825810" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1074">
+<div class="thumbnail"><a href="./posts/2025-10-31-pharmacy-accessibility/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/2025-10-31-pharmacy-accessibility/featured.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2025-10-31-pharmacy-accessibility/index.html" class="no-external">How Many Pharmacies Does Sweden Really Need?</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Z2Vvc3BhdGlhbA=='); return false;">geospatial</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('b3B0aW1pemF0aW9u'); return false;">optimization</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('cHVibGljLXBvbGljeQ=='); return false;">public-policy</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YS1hbmFseXNpcw=='); return false;">data-analysis</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('aGVhbHRoY2FyZQ=='); return false;">healthcare</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('bmF0aW9uYWwtc2VjdXJpdHk='); return false;">national-security</div>
+
 </div>
- <!-- /main -->
+<div class="delink listing-description"><a href="./posts/2025-10-31-pharmacy-accessibility/index.html" class="no-external">
+<p>Using geographic optimization to design emergency pharmacy infrastructure for national crisis preparedness</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/2025-10-31-pharmacy-accessibility/index.html" class="no-external">
+<div class="listing-date">
+Oct 31, 2025
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1761865200000" data-listing-file-modified-sort="1766694611893" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2075">
+<div class="thumbnail"><a href="./posts/2025-12-23-dental-risk-model/index.html" class="no-external">
+
+<p class="card-img-top"><img src="posts/2025-12-23-dental-risk-model/roc_curve_periodontitis.png"  class="thumbnail-image card-img"/></p>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2025-12-23-dental-risk-model/index.html" class="no-external">AI-Driven Risk Assessment Model for Swedish Dental Care</a>
+</h3>
+<div class="delink listing-description"><a href="./posts/2025-12-23-dental-risk-model/index.html" class="no-external">
+At Sweden’s Dental and Pharmaceutical Benefits Agency (TLV), our team developed an automated risk assessment model using deep learning to predict patients’ future dental…
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/2025-12-23-dental-risk-model/index.html" class="no-external">
+<div class="listing-date">
+Oct 31, 2025
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="ZXBpZGVtaW9sb2d5JTJDdGltZS1zZXJpZXMtYW5hbHlzaXMlMkNmb3JlY2FzdGluZyUyQ3B1YmxpYy1oZWFsdGglMkNSJTJDc3VydmVpbGxhbmNl" data-listing-date-sort="1678921200000" data-listing-file-modified-sort="1766694246287" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1157">
+<div class="thumbnail"><a href="./posts/2025-12-23-legionnaires-disease/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2025-12-23-legionnaires-disease/index.html" class="no-external">Detecting Disease Trends: Statistical Evidence of Europe’s Rising Legionnaires’ Disease Burden</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZXBpZGVtaW9sb2d5'); return false;">epidemiology</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('dGltZS1zZXJpZXMtYW5hbHlzaXM='); return false;">time-series-analysis</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Zm9yZWNhc3Rpbmc='); return false;">forecasting</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('cHVibGljLWhlYWx0aA=='); return false;">public-health</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('c3VydmVpbGxhbmNl'); return false;">surveillance</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/2025-12-23-legionnaires-disease/index.html" class="no-external">
+<p>How advanced time series analysis revealed a significant epidemiological shift across 25 European countries</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/2025-12-23-legionnaires-disease/index.html" class="no-external">
+<div class="listing-date">
+Mar 16, 2023
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-categories="Q09WSUQtMTklMkN3b3JrLWZyb20taG9tZSUyQ3dvcmstbGlmZS1iYWxhbmNlJTJDcHVibGljLWhlYWx0aCUyQ2VwaWRlbWlvbG9neSUyQ1I=" data-listing-date-sort="1667257200000" data-listing-file-modified-sort="1766694101773" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="750">
+<div class="thumbnail"><a href="./posts/2025-12-23-wfh-covid/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2025-12-23-wfh-covid/index.html" class="no-external">Working From Home During COVID-19: Changes in Work Conditions and Private Life</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q09WSUQtMTk='); return false;">COVID-19</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('d29yay1mcm9tLWhvbWU='); return false;">work-from-home</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('d29yay1saWZlLWJhbGFuY2U='); return false;">work-life-balance</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('cHVibGljLWhlYWx0aA=='); return false;">public-health</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZXBpZGVtaW9sb2d5'); return false;">epidemiology</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/2025-12-23-wfh-covid/index.html" class="no-external">
+<p>A population-based study examining associations between remote work and changes in work conditions and work-life balance in Stockholm, Sweden</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/2025-12-23-wfh-covid/index.html" class="no-external">
+<div class="listing-date">
+Nov 1, 2022
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
