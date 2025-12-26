@@ -12,8 +12,6 @@ website:
         text: Home
       - href: projects.qmd
         text: Projects
-      - href: travel.qmd
-        text: Travel
       - href: media/CV_Jonas_Samuelsson.pdf
         text: CV
   page-footer:
