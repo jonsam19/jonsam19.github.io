@@ -31,7 +31,7 @@ At TLV I developed a prediction model to predict dental health risks for Sweden'
 :::
 
 ::: {.g-col-12 .g-col-md-7}
-Following Russia's invasion of Ukraine and Sweden's NATO accession, the government tasked TLV with designing an emergency pharmacy system for crisis preparedness. Using geographic optimization and open data, we determined that 300 strategically-placed pharmacies could provide 90% of Sweden's population with access within 20km driving distance—even under crisis conditions. This analysis became the cornerstone of Sweden's emergency pharmacy legislation and national preparedness planning.
+In the government tasked TLV with designing an emergency pharmacy system for crisis preparedness. Using geographic optimization and open data, we determined that 300 strategically-placed pharmacies could provide 90% of Sweden's population with access within 20km driving distance—even under crisis conditions. This analysis influenced proposed legislation and national preparedness planning.
 
 [Read Full Case Study](posts/2025-10-31-pharmacy-accessibility/index.html){.btn .btn-primary} [View on GitHub](https://github.com/jonsam19/pharmacy_accessibility_sweden){.btn .btn-secondary}
 :::
